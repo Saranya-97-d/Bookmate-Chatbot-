@@ -23,7 +23,7 @@ def query_with_cag(context: str, query: str) -> str:
     return response.text.strip()
 
 # Streamlit app interface
-st.title("RAG Application with Google Gemini - by Nirmal Gaud")
+st.title("BookMate - by BrandTech")
 st.header("Upload a PDF and Ask Multiple Questions")
 
 # Session state for file upload and storing Q&A history
