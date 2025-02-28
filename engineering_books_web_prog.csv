@@ -1,0 +1,44 @@
+Book Title,Category,Author,Topics,Difficulty Level
+Artificial Intelligence: A Modern Approach,Artificial Intelligence,"Stuart Russell, Peter Norvig","Search Algorithms, Machine Learning, Robotics, NLP",Advanced
+Deep Learning,Artificial Intelligence,"Ian Goodfellow, Yoshua Bengio, Aaron Courville","Neural Networks, Deep Learning, Generative Models",Advanced
+Pattern Recognition and Machine Learning,Artificial Intelligence,Christopher M. Bishop,"Bayesian Networks, Probabilistic Models, Clustering",Intermediate
+Computer Networking: A Top-Down Approach,Computer Science,"James F. Kurose, Keith W. Ross","Networking Protocols, TCP/IP, HTTP, Security",Intermediate
+Introduction to the Theory of Computation,Computer Science,Michael Sipser,"Automata Theory, Complexity Theory, Algorithms",Advanced
+Operating System Concepts,Computer Science,"Abraham Silberschatz, Peter B. Galvin, Greg Gagne","Process Management, Memory Management, File Systems",Intermediate
+Data Science for Business,Data Science,"Foster Provost, Tom Fawcett","Data-Driven Decision Making, Predictive Analytics",Beginner
+"Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow",Data Science,Aurélien Géron,"Supervised Learning, Deep Learning, TensorFlow",Intermediate
+The Elements of Statistical Learning,Data Science,"Trevor Hastie, Robert Tibshirani, Jerome Friedman","Statistical Learning, Regression, Classification",Advanced
+Artificial Intelligence: Foundations of Computational Agents,Artificial Intelligence,"David L. Poole, Alan K. Mackworth","Search Algorithms, Knowledge Representation, Learning",Intermediate
+Reinforcement Learning: An Introduction,Artificial Intelligence,"Richard S. Sutton, Andrew G. Barto","Markov Decision Processes, Q-Learning, Policy Gradient",Advanced
+Natural Language Processing with Python,Artificial Intelligence,"Steven Bird, Ewan Klein, Edward Loper","Text Processing, NLTK, Computational Linguistics",Beginner
+Computer Organization and Design,Computer Science,"David A. Patterson, John L. Hennessy","Computer Architecture, Assembly Language, Hardware Design",Intermediate
+Clean Code: A Handbook of Agile Software Craftsmanship,Computer Science,Robert C. Martin,"Software Development, Code Readability, Agile Methodologies",Beginner
+Introduction to Algorithms,Computer Science,"Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein","Sorting, Graph Algorithms, Dynamic Programming",Advanced
+Python Data Science Handbook,Data Science,Jake VanderPlas,"Pandas, NumPy, Data Visualization, Jupyter",Beginner
+Bayesian Methods for Hackers,Data Science,Cameron Davidson-Pilon,"Bayesian Statistics, Probabilistic Programming, PyMC3",Intermediate
+Data Mining: Practical Machine Learning Tools and Techniques,Data Science,"Ian H. Witten, Eibe Frank, Mark A. Hall","Data Preprocessing, Classification, Clustering, Weka",Intermediate
+Modern Operating Systems,Computer Science,"Andrew S. Tanenbaum, Herbert Bos","Process Management, File Systems, Virtual Memory",Intermediate
+Operating Systems: Three Easy Pieces,Computer Science,"Remzi H. Arpaci-Dusseau, Andrea C. Arpaci-Dusseau","Concurrency, Virtualization, Persistence",Beginner
+The Design of the UNIX Operating System,Computer Science,Maurice J. Bach,"UNIX Kernel, File Systems, Process Control",Advanced
+Linux Kernel Development,Computer Science,Robert Love,"Linux Internals, Kernel Programming, Device Drivers",Advanced
+Windows Internals,Computer Science,"Mark Russinovich, David Solomon, Alex Ionescu","Windows Architecture, Processes, Memory Management",Advanced
+All of Statistics: A Concise Course in Statistical Inference,Data Science,Larry Wasserman,"Probability Theory, Statistical Inference, Hypothesis Testing",Advanced
+Practical Statistics for Data Scientists,Data Science,"Peter Bruce, Andrew Bruce","Descriptive Statistics, Regression, Resampling Methods",Beginner
+An Introduction to Statistical Learning,Data Science,"Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani","Linear Regression, Classification, Resampling Methods",Intermediate
+Bayesian Data Analysis,Data Science,"Andrew Gelman, John B. Carlin, Hal S. Stern, David B. Dunson","Bayesian Inference, Markov Chain Monte Carlo, Hierarchical Models",Advanced
+The Book of Why: The New Science of Cause and Effect,Data Science,"Judea Pearl, Dana Mackenzie","Causal Inference, Probability, Machine Learning",Intermediate
+Probability and Statistics for Engineering and the Sciences,Data Science,Jay L. Devore,"Probability Distributions, Estimation, Hypothesis Testing",Intermediate
+Introduction to Probability,Data Science,"Joseph K. Blitzstein, Jessica Hwang","Random Variables, Probability Distributions, Bayesian Methods",Beginner
+A First Course in Probability,Data Science,Sheldon Ross,"Combinatorial Probability, Markov Chains, Expectation",Intermediate
+Probability Theory: The Logic of Science,Data Science,E.T. Jaynes,"Bayesian Probability, Inference, Decision Theory",Advanced
+Probability and Computing: Randomized Algorithms and Probabilistic Analysis,Data Science,"Michael Mitzenmacher, Eli Upfal","Randomized Algorithms, Markov Chains, Monte Carlo Methods",Advanced
+HTML and CSS: Design and Build Websites,Web Development,Jon Duckett,"HTML Basics, CSS Styling, Web Page Design",Beginner
+JavaScript and JQuery: Interactive Front-End Web Development,Web Development,Jon Duckett,"JavaScript Basics, DOM Manipulation, Event Handling",Beginner
+Eloquent JavaScript,Web Development,Marijn Haverbeke,"JavaScript Programming, Functional Programming, Async JS",Intermediate
+CSS: The Missing Manual,Web Development,David Sawyer McFarland,"CSS Fundamentals, Responsive Design, Animations",Intermediate
+Effective Java,Programming - Java,Joshua Bloch,"Java Best Practices, Object-Oriented Design, Performance Optimization",Advanced
+Java: The Complete Reference,Programming - Java,Herbert Schildt,"Java Language, OOP, Java APIs, Multithreading",Intermediate
+The C Programming Language,Programming - C,"Brian W. Kernighan, Dennis M. Ritchie","C Fundamentals, Pointers, Memory Management",Advanced
+C Programming: A Modern Approach,Programming - C,K. N. King,"C Basics, Structures, File Handling",Intermediate
+Python Crash Course,Programming - Python,Eric Matthes,"Python Basics, OOP, Web Development",Beginner
+Fluent Python,Programming - Python,Luciano Ramalho,"Advanced Python Techniques, Data Structures, Metaprogramming",Advanced
