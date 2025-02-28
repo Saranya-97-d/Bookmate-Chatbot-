@@ -4,7 +4,7 @@ import google.generativeai as genai
 from PyPDF2 import PdfReader
 
 # Configure Google Gemini API key (Use Streamlit secrets for security)
-genai.configure(api_key="AIzaSyD9ZPsFRIDK5oaXbZriD_Ib1CjGzV0mejk")
+genai.configure(api_key="YOUR_GOOGLE_GEMINI_API_KEY")
 
 # Function to read the PDF file
 def read_pdf(file_path):
@@ -14,7 +14,7 @@ def read_pdf(file_path):
         text = "".join(page.extract_text() or "" for page in reader.pages)
     return text
 
-# Function to query Gemini LLM with CAG
+# Function to query Gemini LLM with context
 def query_with_cag(context: str, query: str) -> str:
     """Query the Gemini LLM with preloaded context."""
     prompt = f"Context:\n{context}\n\nQuery: {query}\nAnswer:"
@@ -24,43 +24,35 @@ def query_with_cag(context: str, query: str) -> str:
 
 # Streamlit app interface
 st.title("BookMate - by BrandTech")
-st.header("Upload a PDF and Ask Multiple Questions")
+st.header("Ask Questions Based on a Default PDF")
 
-# Session state for file upload and storing Q&A history
-if 'uploaded_file' not in st.session_state:
-    st.session_state.uploaded_file = None
-    st.session_state.pdf_text = None
-    st.session_state.qa_history = []  # Store Q&A pairs
+# Path to default PDF ()
+default_pdf_path = "C:\Users\dalin\Downloads\engineering_books.pdf"
 
-uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
+# Initialize session state for PDF processing
+if "pdf_text" not in st.session_state:
+    if os.path.exists():
+        st.session_state.pdf_text = read_pdf(default_pdf_path)
+    else:
+        st.error("Default PDF file not found. Please check the file path.")
+        st.stop()  # Stop execution if the file is missing
 
-if uploaded_file is not None:
-    # Ensure the directory exists
-    temp_dir = "temp"
-    os.makedirs(temp_dir, exist_ok=True)
-    temp_file_path = os.path.join(temp_dir, uploaded_file.name)
-
-    # Save uploaded file
-    with open(temp_file_path, "wb") as f:
-        f.write(uploaded_file.getbuffer())
-
-    # Extract text from PDF
-    pdf_text = read_pdf(temp_file_path)
-    st.session_state.uploaded_file = uploaded_file
-    st.session_state.pdf_text = pdf_text
-
-    # Display PDF content preview
-    st.text_area("PDF Content Preview", value=pdf_text[:1000], height=150)
+# Display PDF content preview if available
+if st.session_state.pdf_text:
+    st.text_area("PDF Content Preview", value=st.session_state.pdf_text[:1000], height=150)
 
     # User question input
     query = st.text_input("Ask a question based on the PDF:")
 
     if query:
         response = query_with_cag(st.session_state.pdf_text, query)
-        st.session_state.qa_history.append((query, response))  # Store question-answer pair
+        st.session_state.setdefault("qa_history", []).append((query, response))
 
-    # Display previous questions and answers
-    if st.session_state.qa_history:
+        st.subheader("Answer:")
+        st.write(response)
+
+    # Display previous Q&A history
+    if "qa_history" in st.session_state and st.session_state.qa_history:
         st.subheader("Question & Answer History:")
         for i, (q, a) in enumerate(st.session_state.qa_history, 1):
             st.markdown(f"**Q{i}:** {q}")
