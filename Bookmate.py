@@ -24,10 +24,10 @@ def query_with_cag(context: str, query: str) -> str:
 
 # Streamlit app interface
 st.title("BookMate - by BrandTech")
-st.header("Ask Questions Based on a Default PDF")
+st.header("Ask Questions related to any engineering topic")
 
 # Path to default PDF (Change this to your actual file path)
-default_pdf_path = "engineering_books.pdf"
+default_pdf_path = "booksdata.pdf"
 
 # Initialize session state for PDF processing
 if "pdf_text" not in st.session_state:
