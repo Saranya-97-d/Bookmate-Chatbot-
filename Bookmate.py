@@ -4,7 +4,7 @@ import google.generativeai as genai
 from PyPDF2 import PdfReader
 
 # Configure Google Gemini API key (Use Streamlit secrets for security)
-genai.configure(api_key="YOUR_GOOGLE_GEMINI_API_KEY")
+genai.configure(api_key="AIzaSyD9ZPsFRIDK5oaXbZriD_Ib1CjGzV0mejk")
 
 # Function to read the PDF file
 def read_pdf(file_path):
@@ -26,12 +26,12 @@ def query_with_cag(context: str, query: str) -> str:
 st.title("BookMate - by BrandTech")
 st.header("Ask Questions Based on a Default PDF")
 
-# Path to default PDF ()
-default_pdf_path = "C:\Users\dalin\Downloads\engineering_books.pdf"
+# Path to default PDF (Change this to your actual file path)
+default_pdf_path = "engineering_books.pdf"
 
 # Initialize session state for PDF processing
 if "pdf_text" not in st.session_state:
-    if os.path.exists():
+    if os.path.exists(default_pdf_path):
         st.session_state.pdf_text = read_pdf(default_pdf_path)
     else:
         st.error("Default PDF file not found. Please check the file path.")
