@@ -54,3 +54,4 @@ if "qa_history" in st.session_state and st.session_state.qa_history:
         st.markdown(f"**A{i}:** {a}")
         st.write("---")  # Separator
 
+
