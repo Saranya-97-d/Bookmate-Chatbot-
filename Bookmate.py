@@ -37,6 +37,8 @@ if "pdf_text" not in st.session_state:
         st.error("Default PDF file not found. Please check the file path.")
         st.stop()  # Stop execution if the file is missing
 
+    query = st.text_input("Ask a question based on the PDF:")
+
 
     if query:
         response = query_with_cag(st.session_state.pdf_text, query)
