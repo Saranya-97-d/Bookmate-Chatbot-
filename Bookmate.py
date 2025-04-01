@@ -58,5 +58,3 @@ if st.session_state.pdf_text:
             st.markdown(f"**A{i}:** {a}")
             st.write("---")  # Separator
 
-
-remove contents in pdf
