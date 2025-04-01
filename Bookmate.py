@@ -37,12 +37,6 @@ if "pdf_text" not in st.session_state:
         st.error("Default PDF file not found. Please check the file path.")
         st.stop()  # Stop execution if the file is missing
 
-# Display PDF content preview if available
-if st.session_state.pdf_text:
-    st.text_area("PDF Content Preview", value=st.session_state.pdf_text[:1000], height=150)
-
-    # User question input
-    query = st.text_input("Ask a question based on the PDF:")
 
     if query:
         response = query_with_cag(st.session_state.pdf_text, query)
