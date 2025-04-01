@@ -36,22 +36,27 @@ if "pdf_text" not in st.session_state:
     else:
         st.error("Default PDF file not found. Please check the file path.")
         st.stop()  # Stop execution if the file is missing
-
-query = st.text_input("Ask a question:")
-
-if query:
-    response = query_with_cag(st.session_state.pdf_text, query)
-    st.session_state.setdefault("qa_history", []).append((query, response))
-
-    st.subheader("Answer:")
-    st.write(response)
-
-# Display previous Q&A history
-if "qa_history" in st.session_state and st.session_state.qa_history:
-    st.subheader("Question & Answer History:")
-    for i, (q, a) in enumerate(st.session_state.qa_history, 1):
-        st.markdown(f"**Q{i}:** {q}")
-        st.markdown(f"**A{i}:** {a}")
-        st.write("---")  # Separator
+if st.session_state.pdf_text:
+    st.text_area("PDF Content Preview", value=st.session_state.pdf_text[:1000], height=150)
 
 
+    query = st.text_input("Ask a question based :")
+
+
+    if query:
+        response = query_with_cag(st.session_state.pdf_text, query)
+        st.session_state.setdefault("qa_history", []).append((query, response))
+
+        st.subheader("Answer:")
+        st.write(response)
+
+    # Display previous Q&A history
+    if "qa_history" in st.session_state and st.session_state.qa_history:
+        st.subheader("Question & Answer History:")
+        for i, (q, a) in enumerate(st.session_state.qa_history, 1):
+            st.markdown(f"**Q{i}:** {q}")
+            st.markdown(f"**A{i}:** {a}")
+            st.write("---")  # Separator
+
+
+remove contents in pdf
