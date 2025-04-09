@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import google.generativeai as genai
 
-# Set Gemini API Key (replace this with your actual key for testing)
+# Set Gemini API Key
 genai.configure(api_key="AIzaSyD9ZPsFRIDK5oaXbZriD_Ib1CjGzV0mejk") 
 
 
@@ -25,43 +25,49 @@ def query_with_cag(context: str, query: str) -> str:
     return response.text.strip()
 
 # Streamlit UI
-st.title("📚 BookMate - by BrandTech")
-st.header("🔍 Ask Questions Related to Web Programming Books")
+st.title("📚 **BookMate - by BrandTech**")
+st.markdown("### 🔍 **Ask Questions Related to Web Programming Books**")
 
 # Load CSV
 csv_url = "https://raw.githubusercontent.com/Saranya-97-d/Bookmate-Chatbot-/main/engineering_books_web_prog.csv"
 df = load_csv_from_github(csv_url)
 
 if df is not None:
-    st.subheader("Books Data Preview")
+    st.markdown("### 📖 **Books Data Preview**")
     st.dataframe(df.head(), use_container_width=True)
 
-    # Show unique authors and topics
-    with st.expander("📌 Book Authors & Topics"):
+    # Display authors and topics line by line
+    with st.expander("📌 **Book Authors & Topics**", expanded=True):
         if "Author" in df.columns:
             authors = df["Author"].dropna().unique()
-            st.markdown("**👩‍🏫 Authors:**")
-            st.write(", ".join(authors))
+            st.markdown("#### 👩‍🏫 **Authors:**")
+            for author in authors:
+                st.markdown(f"- {author}")
+        
         if "Topics" in df.columns:
             topics = df["Topics"].dropna().unique()
-            st.markdown("**🧠 Topics:**")
-            st.write(", ".join(topics))
+            st.markdown("#### 🧠 **Topics:**")
+            for topic in topics:
+                st.markdown(f"- {topic}")
 
-    # Build context and ask Gemini
+    # Convert dataframe to text for model
     csv_text = df.to_string(index=False)
 
-    query = st.text_input("Ask a question based on the CSV content:")
+    st.markdown("### ✍️ **Enter Your Question Below**")
+    query = st.text_input("")
+
     if query:
         response = query_with_cag(csv_text, query)
-        st.subheader("📖 Answer:")
+        st.markdown("### 📬 **Answer:**")
         st.write(response)
 
+        # Save history
         st.session_state.setdefault("qa_history", []).append((query, response))
 
-    # History
+    # Show Q&A History
     if "qa_history" in st.session_state:
-        st.subheader("🕑 Q&A History")
+        st.markdown("### 🕑 **Q&A History**")
         for i, (q, a) in enumerate(st.session_state.qa_history, 1):
             st.markdown(f"**Q{i}:** {q}")
             st.markdown(f"**A{i}:** {a}")
-            st.write("---")
+            st.markdown("---")
