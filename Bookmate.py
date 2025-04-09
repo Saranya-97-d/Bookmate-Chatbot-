@@ -1,60 +1,56 @@
-import os
 import streamlit as st
+import pandas as pd
 import google.generativeai as genai
-from PyPDF2 import PdfReader
+import requests
 
-# Configure Google Gemini API key (Use Streamlit secrets for security)
-genai.configure(api_key="AIzaSyD9ZPsFRIDK5oaXbZriD_Ib1CjGzV0mejk")
+# Configure Google Gemini API key
+genai.configure(api_key="YOUR_API_KEY_HERE")  # Replace with st.secrets or secure method
 
-# Function to read the PDF file
-def read_pdf(file_path):
-    """Reads the text from a PDF file."""
-    with open(file_path, 'rb') as file:
-        reader = PdfReader(file)
-        text = "".join(page.extract_text() or "" for page in reader.pages)
-    return text
+# GitHub raw URL to CSV
+csv_url = "https://raw.githubusercontent.com/Saranya-97-d/Bookmate-Chatbot-/main/engineering_books_web_prog.csv"
 
-# Function to query Gemini LLM with context
-def query_with_cag(context: str, query: str) -> str:
-    """Query the Gemini LLM with preloaded context."""
+# Function to read CSV from GitHub
+def read_csv_from_github(url):
+    response = requests.get(url)
+    response.raise_for_status()
+    df = pd.read_csv(pd.compat.StringIO(response.text))
+    return df
+
+# Function to query Gemini LLM
+def query_with_context(context: str, query: str) -> str:
     prompt = f"Context:\n{context}\n\nQuery: {query}\nAnswer:"
     model = genai.GenerativeModel("gemini-1.5-flash")
     response = model.generate_content(prompt)
     return response.text.strip()
 
-# Streamlit app interface
+# Streamlit App
 st.title("BookMate - by BrandTech")
-st.header("Ask Questions related to any engineering topic")
+st.header("Ask Questions Based on Engineering Book Data (CSV)")
 
-# Path to default PDF (Change this to your actual file path)
-default_pdf_path = "booksdata.pdf"
+# Load CSV and create context
+try:
+    df = read_csv_from_github(csv_url)
+    csv_text = df.to_string(index=False)
+    st.text_area("CSV Content Preview", value=csv_text[:1000], height=200)
+except Exception as e:
+    st.error(f"Error loading CSV: {e}")
+    st.stop()
 
-# Initialize session state for PDF processing
-if "pdf_text" not in st.session_state:
-    if os.path.exists(default_pdf_path):
-        st.session_state.pdf_text = read_pdf(default_pdf_path)
-    else:
-        st.error("Default PDF file not found. Please check the file path.")
-        st.stop()  # Stop execution if the file is missing
-if st.session_state.pdf_text:
-    st.text_area("PDF Content Preview", value=st.session_state.pdf_text[:1000], height=150)
+# Question input
+query = st.text_input("Ask a question based on the book data:")
 
+# Generate response
+if query:
+    response = query_with_context(csv_text, query)
+    st.session_state.setdefault("qa_history", []).append((query, response))
 
-    query = st.text_input("Ask a question based :")
+    st.subheader("Answer:")
+    st.write(response)
 
-
-    if query:
-        response = query_with_cag(st.session_state.pdf_text, query)
-        st.session_state.setdefault("qa_history", []).append((query, response))
-
-        st.subheader("Answer:")
-        st.write(response)
-
-    # Display previous Q&A history
-    if "qa_history" in st.session_state and st.session_state.qa_history:
-        st.subheader("Question & Answer History:")
-        for i, (q, a) in enumerate(st.session_state.qa_history, 1):
-            st.markdown(f"**Q{i}:** {q}")
-            st.markdown(f"**A{i}:** {a}")
-            st.write("---")  # Separator
-
+# Show Q&A history
+if "qa_history" in st.session_state:
+    st.subheader("Question & Answer History:")
+    for i, (q, a) in enumerate(st.session_state.qa_history, 1):
+        st.markdown(f"**Q{i}:** {q}")
+        st.markdown(f"**A{i}:** {a}")
+        st.write("---")
