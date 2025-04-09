@@ -1,12 +1,11 @@
 import pandas as pd
 import streamlit as st
 import google.generativeai as genai
-import requests
 
-# Configure Google Gemini API key (Use Streamlit secrets for security)
-genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 
-# Function to load CSV from GitHub
+genai.configure(api_key="AIzaSyD9ZPsFRIDK5oaXbZriD_Ib1CjGzV0mejk")  # Replace with your actual key
+
+# Load CSV from GitHub
 @st.cache_data
 def load_csv_from_github(url):
     try:
@@ -18,7 +17,6 @@ def load_csv_from_github(url):
 
 # Function to query Gemini LLM with context
 def query_with_cag(context: str, query: str) -> str:
-    """Query the Gemini LLM with preloaded context."""
     prompt = f"Context:\n{context}\n\nQuery: {query}\nAnswer:"
     model = genai.GenerativeModel("gemini-1.5-flash")
     response = model.generate_content(prompt)
@@ -34,7 +32,7 @@ df = load_csv_from_github(csv_url)
 if df is not None:
     st.dataframe(df.head())
 
-    # Combine all rows as context (not scalable for very large files)
+    # Combine all rows as context (simple version for small datasets)
     csv_text = df.to_string(index=False)
 
     query = st.text_input("Ask a question based on the CSV content:")
