@@ -7,7 +7,7 @@ import requests
 genai.configure(api_key="YOUR_API_KEY_HERE")  # Replace with st.secrets or secure method
 
 # GitHub raw URL to CSV
-csv_url = "https://raw.githubusercontent.com/Saranya-97-d/Bookmate-Chatbot-/main/engineering_books_web_prog.csv"
+csv_url = "https://github.com/Saranya-97-d/Bookmate-Chatbot-/blob/main/engineering_books_web_prog.csv"
 
 # Function to read CSV from GitHub
 def read_csv_from_github(url):
